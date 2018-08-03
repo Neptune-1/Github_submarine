@@ -5,10 +5,12 @@ import cv2
 import RPi.GPIO as GPIO
 
 from os import system
+try:
+    system('sudo pigpiod')
+    import pigpio
+except:
+    print('can not pigpio init')
 
-system('sudo pigpiod')
-
-import pigpio
 
 motor = 24
 pi = pigpio.pi()
