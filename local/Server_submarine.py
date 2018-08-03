@@ -5,23 +5,23 @@ import cv2
 import RPi.GPIO as GPIO
 
 from os import system
-try:
-    system('sudo pigpiod')
-    import pigpio
-except:
-    print('can not pigpio init')
+# try:
+#     system('sudo pigpiod')
+#     import pigpio
+# except:
+#     print('can not pigpio init')
 
 
 motor = 24
-pi = pigpio.pi()
+# pi = pigpio.pi()
 
-pi.set_servo_pulsewidth(motor, 1500)
-time.sleep(0.3)
+# pi.set_servo_pulsewidth(motor, 1500)
+# time.sleep(0.3)
 
-pi.set_servo_pulsewidth(motor, 1900)
-time.sleep(2)
+# pi.set_servo_pulsewidth(motor, 1900)
+# time.sleep(2)
 
-pi.set_servo_pulsewidth(motor, 1500)
+# pi.set_servo_pulsewidth(motor, 1500)
 
 i = 0
 OK_send = 0
