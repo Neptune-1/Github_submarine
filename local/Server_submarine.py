@@ -28,13 +28,13 @@ OK_send = 0
 OK_foto = 0
 file = ""
 
-cap = cv2.VideoCapture(0)  # захват видео с камеры
+cap = cv2.VideoCapture(0) 
 beg = 0
 speed = 1500
 while beg == 0:
     try:
         sock = socket.socket()
-        sock.bind(('', 9001))  # назначается адресс и порт связи
+        sock.bind(('', 9001))  
         sock.listen(1)
         conn, addr = sock.accept()
         i = 1
@@ -63,7 +63,7 @@ GPIO.setup(left_servo, GPIO.LOW)
 GPIO.setup(up_servo, GPIO.LOW)
 GPIO.setup(down_servo, GPIO.LOW)
 
-while True:  # бесконечный цикл отправки и приема данных
+while True: 
     data = b''
 
     conn.setblocking(False)
@@ -121,15 +121,15 @@ while True:  # бесконечный цикл отправки и приема 
         pi.set_servo_pulsewidth(motor, speed)
         print('+')
 
-    file = "Number" + str(1) + ".jpg"  # формирует название файла
+    file = "Number" + str(1) + ".jpg" 
     i += 1
-    ret, im = cap.read()  # считывание данных с камеры
+    ret, im = cap.read()  
     res = cv2.resize(im, (320, 240))
 
     if data != None:
         try:
             cv2.imwrite(file, res)
-            file_op = open(file, "rb")  # открытие созданного файла для записи данных с камеры
+            file_op = open(file, "rb")  
             file_read = file_op.read()
             time.sleep(2)
         except:
