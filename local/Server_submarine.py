@@ -11,7 +11,6 @@ from os import system
 # except:
 #     print('can not pigpio init')
 
-
 motor = 24
 # pi = pigpio.pi()
 
