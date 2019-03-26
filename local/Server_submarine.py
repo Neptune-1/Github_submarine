@@ -2,7 +2,10 @@ import socket
 import os
 import time
 import cv2
-import RPi.GPIO as GPIO
+# ************************************************************
+
+#import RPi.GPIO as GPIO
+# ************************************************************
 
 from os import system
 # try:
@@ -38,29 +41,32 @@ while beg == 0:
         conn, addr = sock.accept()
         i = 1
         print('connect')
+        beg=1
     except:
         pass
 
 # sock.setblocking(0)
 # sock.settimeout(5)
+# ************************************************************
+# right_servo = 22
+# left_servo = 27
+# up_servo = 17
+# down_servo = 23
+#
+# GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BCM)
+#
+# GPIO.setup(right_servo, GPIO.OUT)
+# GPIO.setup(left_servo, GPIO.OUT)
+# GPIO.setup(up_servo, GPIO.OUT)
+# GPIO.setup(down_servo, GPIO.OUT)
+#
+# GPIO.setup(right_servo, GPIO.LOW)
+# GPIO.setup(left_servo, GPIO.LOW)
+# GPIO.setup(up_servo, GPIO.LOW)
+# GPIO.setup(down_servo, GPIO.LOW)
+# ************************************************************
 
-right_servo = 22
-left_servo = 27
-up_servo = 17
-down_servo = 23
-
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(right_servo, GPIO.OUT)
-GPIO.setup(left_servo, GPIO.OUT)
-GPIO.setup(up_servo, GPIO.OUT)
-GPIO.setup(down_servo, GPIO.OUT)
-
-GPIO.setup(right_servo, GPIO.LOW)
-GPIO.setup(left_servo, GPIO.LOW)
-GPIO.setup(up_servo, GPIO.LOW)
-GPIO.setup(down_servo, GPIO.LOW)
 
 while True: 
     data = b''
@@ -71,66 +77,75 @@ while True:
 
     except:
         pass
+# ************************************************************
 
-    if data == b'left':
-        # right_servo .ChangeDutyCycle(4)
-        # left_servo .ChangeDutyCycle(4)
+    # if data == b'left':
+    #     # right_servo .ChangeDutyCycle(4)
+    #     # left_servo .ChangeDutyCycle(4)
+    #
+    #     GPIO.setup(right_servo, GPIO.LOW)
+    #     GPIO.setup(left_servo, GPIO.HIGH)
+    #     print('left')
+    #
+    # elif data == b'right':
+    #
+    #     GPIO.setup(right_servo, GPIO.HIGH)
+    #     GPIO.setup(left_servo, GPIO.LOW)
+    #     print('right')
+    #
+    # elif data == b'up':
+    #
+    #     GPIO.setup(up_servo, GPIO.HIGH)
+    #     GPIO.setup(down_servo, GPIO.LOW)
+    #     print('up')
+    #
+    # elif data == b'down':
+    #
+    #     GPIO.setup(up_servo, GPIO.LOW)
+    #     GPIO.setup(down_servo, GPIO.HIGH)
+    #     print('down')
+    #
+    # elif data == b'stop':
+    #
+    #     GPIO.setup(right_servo, GPIO.LOW)
+    #     GPIO.setup(left_servo, GPIO.LOW)
+    #     GPIO.setup(up_servo, GPIO.LOW)
+    #     GPIO.setup(down_servo, GPIO.LOW)
+    #
+    #     pi.set_servo_pulsewidth(motor, 1500)
+    #     print('stop')
+    #
+    # elif data == b'-':
+    #     if speed > 1500:
+    #         speed -= 100
+    #     pi.set_servo_pulsewidth(motor, speed)
+    #     print('-')
+    #
+    # elif data == b'+':
+    #     if speed < 2000:
+    #         speed += 100
+    #     pi.set_servo_pulsewidth(motor, speed)
+    #     print('+')
+# ************************************************************
 
-        GPIO.setup(right_servo, GPIO.LOW)
-        GPIO.setup(left_servo, GPIO.HIGH)
-        print('left')
-
-    elif data == b'right':
-
-        GPIO.setup(right_servo, GPIO.HIGH)
-        GPIO.setup(left_servo, GPIO.LOW)
-        print('right')
-
-    elif data == b'up':
-
-        GPIO.setup(up_servo, GPIO.HIGH)
-        GPIO.setup(down_servo, GPIO.LOW)
-        print('up')
-
-    elif data == b'down':
-
-        GPIO.setup(up_servo, GPIO.LOW)
-        GPIO.setup(down_servo, GPIO.HIGH)
-        print('down')
-
-    elif data == b'stop':
-
-        GPIO.setup(right_servo, GPIO.LOW)
-        GPIO.setup(left_servo, GPIO.LOW)
-        GPIO.setup(up_servo, GPIO.LOW)
-        GPIO.setup(down_servo, GPIO.LOW)
-
-        pi.set_servo_pulsewidth(motor, 1500)
-        print('stop')
-
-    elif data == b'-':
-        if speed > 1500:
-            speed -= 100
-        pi.set_servo_pulsewidth(motor, speed)
-        print('-')
-
-    elif data == b'+':
-        if speed < 2000:
-            speed += 100
-        pi.set_servo_pulsewidth(motor, speed)
-        print('+')
 
     file = "Number" + str(1) + ".jpg" 
     i += 1
-    ret, im = cap.read()  
+    ret, im = cap.read()
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 3]
+    result, encimg = cv2.imencode('.jpg', im, encode_param)
+    #im = cv2.imdecode(encimg, 1)
     res = cv2.resize(im, (320, 240))
-
+    print('ok1')
+    
     if data != None:
         try:
             cv2.imwrite(file, res)
+            
             file_op = open(file, "rb")  
             file_read = file_op.read()
-            time.sleep(2)
+            print(file_read)
+            #time.sleep(0.1)
         except:
             print("Error")
 
@@ -141,5 +156,6 @@ while True:
     except:
 
         print(0)
+    
 # conn.close()
 # pi.stop()

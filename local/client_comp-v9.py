@@ -4,6 +4,8 @@ import time
 import os
 print(1)
 a = 0
+day=  '-'.join('_'.join(str(time.ctime()).split(' ')).split(':'))
+os.mkdir(day)
 file = "test0.jpg"
 Reserv = "Reserv.jpg"
 err = 0
@@ -11,7 +13,7 @@ sock = socket.socket()
 im=cv2.imread('1.jpg')
 while err == 0:
     try:
-        sock.connect(('192.168.43.237', 9001))
+        sock.connect(('192.168.0.37', 9001))
         err = 1
         print('connect')
 
@@ -61,6 +63,7 @@ def b_minus():
 data_1 = bytes('', 'utf-8')
 i = 0
 num=0
+file='test3.jpg'
 while True:
     #cv2.imshow('l',im)
     #num = cv2.waitKey(33)
@@ -82,49 +85,51 @@ while True:
     if num == 27:  # escape
         sock.close()
 
-    file = "test0.jpg"
+    
     try:
         image_result = open(file, 'wb')
     except:
         image_result = open('err.jpg', 'wb')
-    image = bytes('', 'utf-8')
-    data = bytes('', 'utf-8')
+    image = b''
+    data = b''
     # print(1)
 
     # i+=1
-    while bytes('stop', 'utf-8') not in data:
+    while b'stop' not in data:
 
-        data = sock.recv(1024)
-        image_result.write(data)
+        data += sock.recv(2**15)
+        #image_result.write(data)
         print('not ')
-    if bytes('stop', 'utf-8') in data:
+    if b'stop' in data:
+        print(file,1)
+        image_result.write(data[:data.index(b'stop')])
 
-        image_result.write(data[:data.index(bytes('stop', 'utf-8'))])
-
-        data_1 = data[data.index(bytes('stop', 'utf-8')) + 4:]
+        data_1 = data[data.index(b'stop') + 4:]
 
         image_result.close()
         if os.path.getsize(file) > 500:
+            print(file,2)
+            img = cv2.putText(cv2.imread(file,0), str(i) ,(30,100),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
 
-            img = cv2.imread(file)
-
-            try:
+            try :
                 print('>500 Ok')
                 cv2.imshow('Transport', img)
                 num = cv2.waitKey(33)
 
-
-            except:
-                print('Error')
+            except Exception as e:
+                print(e)
+                #os.remove(file)
 
         else:
             print("STOP______________")
-
-        file = "Number" + str(i) + ".jpg"
+            #os.remove(file)
+        print(file,3)
+        file = day+'/'+ str(i) + ".jpg"
+        print(file,4)
         image_result = open(file, 'wb')
-        data = bytes('', 'utf-8')
+        data = b''
         i+=1
-        print(7)
         image_result.write(data_1)
-        data_1 = bytes('', 'utf-8')
+        data_1 = b''
         a = 0
+        print(file,4)
