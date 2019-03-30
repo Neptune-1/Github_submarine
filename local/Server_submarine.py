@@ -49,8 +49,8 @@ while beg == 0:
 # sock.settimeout(5)
 # ************************************************************
 shut=23
-light=22
-right_servo = 4
+light=4
+right_servo = 22
 left_servo = 27
 up_servo = 17
 down_servo = 18
