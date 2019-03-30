@@ -151,8 +151,9 @@ while True:
         im1 = cv2.imdecode(encimg, 1)
         res = cv2.resize(im1, (320, 240))
     except:
-        res = cv2.resize(im, (320, 240))
-        res = cv2.putText(res, str(i) ,(160,120),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
+#         res = cv2.resize(im, (320, 240))
+#         res = cv2.putText(res, str(i) ,(160,120),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
+        pass
 
 
     print('ok1')
