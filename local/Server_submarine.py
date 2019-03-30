@@ -8,22 +8,22 @@ import RPi.GPIO as GPIO
 # ************************************************************
 
 from os import system
-# try:
-#     system('sudo pigpiod')
-#     import pigpio
-# except:
-#     print('can not pigpio init')
+try:
+    system('sudo pigpiod')
+    import pigpio
+except:
+    print('can not pigpio init')
 
 motor = 24
-# pi = pigpio.pi()
+pi = pigpio.pi()
 
-# pi.set_servo_pulsewidth(motor, 1500)
-# time.sleep(0.3)
+pi.set_servo_pulsewidth(motor, 1500)
+time.sleep(0.3)
 
-# pi.set_servo_pulsewidth(motor, 1900)
-# time.sleep(2)
+pi.set_servo_pulsewidth(motor, 1900)
+time.sleep(2)
 
-# pi.set_servo_pulsewidth(motor, 1500)
+pi.set_servo_pulsewidth(motor, 1500)
 
 i = 0
 OK_send = 0
@@ -80,37 +80,35 @@ while True:
 # ************************************************************
 
     if data == b'left':
-        # right_servo .ChangeDutyCycle(4)
-        # left_servo .ChangeDutyCycle(4)
     
-        GPIO.setup(right_servo, GPIO.LOW)
-        GPIO.setup(left_servo, GPIO.HIGH)
+        GPIO.output(right_servo, False)
+        GPIO.output(left_servo, True)
         print('left')
     
     elif data == b'right':
     
-        GPIO.setup(right_servo, GPIO.HIGH)
-        GPIO.setup(left_servo, GPIO.LOW)
+        GPIO.output(right_servo, True)
+        GPIO.output(left_servo, False)
         print('right')
     
     elif data == b'up':
     
-        GPIO.setup(up_servo, GPIO.HIGH)
-        GPIO.setup(down_servo, GPIO.LOW)
+        GPIO.output(up_servo, True)
+        GPIO.output(down_servo, False)
         print('up')
     
     elif data == b'down':
     
-        GPIO.setup(up_servo, GPIO.LOW)
-        GPIO.setup(down_servo, GPIO.HIGH)
+        GPIO.output(up_servo, False)
+        GPIO.output(down_servo, True)
         print('down')
     
     elif data == b'stop':
     
-        GPIO.setup(right_servo, GPIO.LOW)
-        GPIO.setup(left_servo, GPIO.LOW)
-        GPIO.setup(up_servo, GPIO.LOW)
-        GPIO.setup(down_servo, GPIO.LOW)
+        GPIO.output(right_servo, False)
+        GPIO.output(left_servo, False)
+        GPIO.output(up_servo, False)
+        GPIO.output(down_servo, False)
     
         pi.set_servo_pulsewidth(motor, 1500)
         print('stop')
