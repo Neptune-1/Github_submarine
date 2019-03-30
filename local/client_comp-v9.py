@@ -13,7 +13,7 @@ sock = socket.socket()
 im=cv2.imread('1.jpg')
 while err == 0:
     try:
-        sock.connect(('192.168.0.37', 9001))
+        sock.connect(('192.168.0.43', 9001))
         err = 1
         print('connect')
 
