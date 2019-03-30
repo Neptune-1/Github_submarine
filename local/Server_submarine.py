@@ -48,26 +48,32 @@ while beg == 0:
 # sock.setblocking(0)
 # sock.settimeout(5)
 # ************************************************************
-right_servo = 22
+shut=23
+light=22
+right_servo = 4
 left_servo = 27
 up_servo = 17
-down_servo = 23
+down_servo = 18
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(shut,GPIO.OUT)
+GPIO.setup(light,GPIO.OUT)
 GPIO.setup(right_servo, GPIO.OUT)
 GPIO.setup(left_servo, GPIO.OUT)
 GPIO.setup(up_servo, GPIO.OUT)
 GPIO.setup(down_servo, GPIO.OUT)
 
-GPIO.setup(right_servo, GPIO.LOW)
-GPIO.setup(left_servo, GPIO.LOW)
-GPIO.setup(up_servo, GPIO.LOW)
-GPIO.setup(down_servo, GPIO.LOW)
+GPIO.output(shut,False)
+GPIO.output(light,False)
+GPIO.output(right_servo, False)
+GPIO.output(left_servo, False)
+GPIO.output(up_servo, False)
+GPIO.output(down_servo, False)
 # ************************************************************
 
-
+li=0
 while True: 
     data = b''
 
@@ -84,7 +90,16 @@ while True:
         GPIO.output(right_servo, False)
         GPIO.output(left_servo, True)
         print('left')
-    
+    elif data == b'light':
+        if li==0:
+             GPIO.output(light, True)
+             li=1
+        else:
+             li=0
+             GPIO.output(light, False)
+    elif data == b'shut':
+        GPIO.output(shut, True)
+
     elif data == b'right':
     
         GPIO.output(right_servo, True)
@@ -130,7 +145,7 @@ while True:
     file = "Number" + str(1) + ".jpg" 
     i += 1
     ret, im = cap.read()
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 3]
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 2]
     result, encimg = cv2.imencode('.jpg', im, encode_param)
     #im = cv2.imdecode(encimg, 1)
     res = cv2.resize(im, (320, 240))
