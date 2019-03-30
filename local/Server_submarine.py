@@ -4,7 +4,7 @@ import time
 import cv2
 # ************************************************************
 
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 # ************************************************************
 
 from os import system
@@ -48,23 +48,23 @@ while beg == 0:
 # sock.setblocking(0)
 # sock.settimeout(5)
 # ************************************************************
-# right_servo = 22
-# left_servo = 27
-# up_servo = 17
-# down_servo = 23
-#
-# GPIO.setwarnings(False)
-# GPIO.setmode(GPIO.BCM)
-#
-# GPIO.setup(right_servo, GPIO.OUT)
-# GPIO.setup(left_servo, GPIO.OUT)
-# GPIO.setup(up_servo, GPIO.OUT)
-# GPIO.setup(down_servo, GPIO.OUT)
-#
-# GPIO.setup(right_servo, GPIO.LOW)
-# GPIO.setup(left_servo, GPIO.LOW)
-# GPIO.setup(up_servo, GPIO.LOW)
-# GPIO.setup(down_servo, GPIO.LOW)
+right_servo = 22
+left_servo = 27
+up_servo = 17
+down_servo = 23
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(right_servo, GPIO.OUT)
+GPIO.setup(left_servo, GPIO.OUT)
+GPIO.setup(up_servo, GPIO.OUT)
+GPIO.setup(down_servo, GPIO.OUT)
+
+GPIO.setup(right_servo, GPIO.LOW)
+GPIO.setup(left_servo, GPIO.LOW)
+GPIO.setup(up_servo, GPIO.LOW)
+GPIO.setup(down_servo, GPIO.LOW)
 # ************************************************************
 
 
@@ -79,53 +79,53 @@ while True:
         pass
 # ************************************************************
 
-    # if data == b'left':
-    #     # right_servo .ChangeDutyCycle(4)
-    #     # left_servo .ChangeDutyCycle(4)
-    #
-    #     GPIO.setup(right_servo, GPIO.LOW)
-    #     GPIO.setup(left_servo, GPIO.HIGH)
-    #     print('left')
-    #
-    # elif data == b'right':
-    #
-    #     GPIO.setup(right_servo, GPIO.HIGH)
-    #     GPIO.setup(left_servo, GPIO.LOW)
-    #     print('right')
-    #
-    # elif data == b'up':
-    #
-    #     GPIO.setup(up_servo, GPIO.HIGH)
-    #     GPIO.setup(down_servo, GPIO.LOW)
-    #     print('up')
-    #
-    # elif data == b'down':
-    #
-    #     GPIO.setup(up_servo, GPIO.LOW)
-    #     GPIO.setup(down_servo, GPIO.HIGH)
-    #     print('down')
-    #
-    # elif data == b'stop':
-    #
-    #     GPIO.setup(right_servo, GPIO.LOW)
-    #     GPIO.setup(left_servo, GPIO.LOW)
-    #     GPIO.setup(up_servo, GPIO.LOW)
-    #     GPIO.setup(down_servo, GPIO.LOW)
-    #
-    #     pi.set_servo_pulsewidth(motor, 1500)
-    #     print('stop')
-    #
-    # elif data == b'-':
-    #     if speed > 1500:
-    #         speed -= 100
-    #     pi.set_servo_pulsewidth(motor, speed)
-    #     print('-')
-    #
-    # elif data == b'+':
-    #     if speed < 2000:
-    #         speed += 100
-    #     pi.set_servo_pulsewidth(motor, speed)
-    #     print('+')
+    if data == b'left':
+        # right_servo .ChangeDutyCycle(4)
+        # left_servo .ChangeDutyCycle(4)
+    
+        GPIO.setup(right_servo, GPIO.LOW)
+        GPIO.setup(left_servo, GPIO.HIGH)
+        print('left')
+    
+    elif data == b'right':
+    
+        GPIO.setup(right_servo, GPIO.HIGH)
+        GPIO.setup(left_servo, GPIO.LOW)
+        print('right')
+    
+    elif data == b'up':
+    
+        GPIO.setup(up_servo, GPIO.HIGH)
+        GPIO.setup(down_servo, GPIO.LOW)
+        print('up')
+    
+    elif data == b'down':
+    
+        GPIO.setup(up_servo, GPIO.LOW)
+        GPIO.setup(down_servo, GPIO.HIGH)
+        print('down')
+    
+    elif data == b'stop':
+    
+        GPIO.setup(right_servo, GPIO.LOW)
+        GPIO.setup(left_servo, GPIO.LOW)
+        GPIO.setup(up_servo, GPIO.LOW)
+        GPIO.setup(down_servo, GPIO.LOW)
+    
+        pi.set_servo_pulsewidth(motor, 1500)
+        print('stop')
+    
+    elif data == b'-':
+        if speed > 1500:
+            speed -= 100
+        pi.set_servo_pulsewidth(motor, speed)
+        print('-')
+    
+    elif data == b'+':
+        if speed < 2000:
+            speed += 100
+        pi.set_servo_pulsewidth(motor, speed)
+        print('+')
 # ************************************************************
 
 
