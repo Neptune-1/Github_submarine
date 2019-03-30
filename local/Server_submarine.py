@@ -49,8 +49,8 @@ while beg == 0:
 # sock.settimeout(5)
 # ************************************************************
 shut=23
-light=4
-right_servo = 22
+light=22
+right_servo = 4
 left_servo = 27
 up_servo = 17
 down_servo = 18
@@ -145,10 +145,16 @@ while True:
     file = "Number" + str(1) + ".jpg" 
     i += 1
     ret, im = cap.read()
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 2]
-    result, encimg = cv2.imencode('.jpg', im, encode_param)
-    #im = cv2.imdecode(encimg, 1)
-    res = cv2.resize(im, (320, 240))
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 4]
+    try:
+        result, encimg = cv2.imencode('.jpg', im, encode_param)
+        im1 = cv2.imdecode(encimg, 1)
+        res = cv2.resize(im1, (320, 240))
+    except:
+        res = cv2.resize(im, (320, 240))
+        res = cv2.putText(res, str(i) ,(160,120),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
+
+
     print('ok1')
     
     if data != None:
