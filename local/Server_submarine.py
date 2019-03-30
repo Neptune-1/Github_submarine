@@ -153,7 +153,8 @@ while True:
     except:
 #         res = cv2.resize(im, (320, 240))
 #         res = cv2.putText(res, str(i) ,(160,120),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
-        pass
+        cap = cv2.VideoCapture(1) 
+
 
 
     print('ok1')
