@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 
 from os import system
 try:
-    #system('sudo pigpiod')
+    system('sudo pigpiod')
     import pigpio
 except:
     print('can not pigpio init')
