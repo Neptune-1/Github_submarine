@@ -71,7 +71,7 @@ GPIO.setup(left_servo, GPIO.OUT)
 GPIO.setup(up_servo, GPIO.OUT)
 GPIO.setup(down_servo, GPIO.OUT)
 
-GPIO.output(shut,False)
+GPIO.output(shut,True)
 GPIO.output(light,False)
 GPIO.output(right_servo, False)
 GPIO.output(left_servo, False)
@@ -81,7 +81,7 @@ GPIO.output(down_servo, False)
 
 li=0
 
-es=0
+es=1
 while True: 
     data = b''
 
