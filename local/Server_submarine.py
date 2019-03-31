@@ -14,7 +14,7 @@ try:
 except:
     print('can not pigpio init')
 
-motor = 18
+motor = 24
 pi = pigpio.pi()
 
 pi.set_servo_pulsewidth(motor, 1500)
@@ -59,7 +59,7 @@ light=22
 right_servo = 4
 left_servo = 27
 up_servo = 17
-down_servo = 24
+down_servo = 18
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
