@@ -29,8 +29,10 @@ i = 0
 OK_send = 0
 OK_foto = 0
 file = ""
-
-cap = cv2.VideoCapture(0) 
+try:
+    cap = cv2.VideoCapture(0) 
+except:
+    print('NO CAMERA')
 beg = 0
 speed = 1500
 while beg == 0:
