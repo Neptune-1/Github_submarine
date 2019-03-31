@@ -33,6 +33,10 @@ try:
     cap = cv2.VideoCapture(0) 
 except:
     print('NO CAMERA')
+try:
+    cap = cv2.VideoCapture(1) 
+except:
+    print('NO CAMERA')
 beg = 0
 speed = 1500
 while beg == 0:
