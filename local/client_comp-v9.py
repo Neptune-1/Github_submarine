@@ -13,12 +13,13 @@ sock = socket.socket()
 im=cv2.imread('1.jpg')
 while err == 0:
     try:
-        sock.connect(('192.168.0.37', 9001))
+        sock.connect(('192.168.0.43', 9001))
         err = 1
         print('connect')
 
     except:
         pass
+
 
 image_result = open(file, 'wb')
 
@@ -28,6 +29,14 @@ print(2)
 def b_left():
     print('left')
     sock.send(bytes('left', 'utf-8'))
+
+def b_light():
+    print('light')
+    sock.send(bytes('light', 'utf-8'))
+
+def b_shut():
+    print('shut')
+    sock.send(bytes('shut', 'utf-8'))
 
 
 def b_right():
@@ -83,9 +92,9 @@ while True:
     if num == 43:  # +
         b_plus()
     if num == 27:  # escape
-        sock.close()
-
-    
+        b_shut()
+    if num == 32:
+        b_light()
     try:
         image_result = open(file, 'wb')
     except:
@@ -101,7 +110,6 @@ while True:
         #image_result.write(data)
         print('not ')
     if b'stop' in data:
-        print(file,1)
         image_result.write(data[:data.index(b'stop')])
 
         data_1 = data[data.index(b'stop') + 4:]
@@ -123,13 +131,10 @@ while True:
         else:
             print("STOP______________")
             #os.remove(file)
-        print(file,3)
         file = day+'/'+ str(i) + ".jpg"
-        print(file,4)
         image_result = open(file, 'wb')
         data = b''
         i+=1
         image_result.write(data_1)
         data_1 = b''
         a = 0
-        print(file,4)
