@@ -37,6 +37,7 @@ except:
     print('NO CAMERA')
 beg = 0
 speed = 1500
+print('start connection')
 while beg == 0:
     try:
         sock = socket.socket()
@@ -48,6 +49,7 @@ while beg == 0:
         beg=1
     except:
         pass
+print('end connection')
 
 # sock.setblocking(0)
 # sock.settimeout(5)
