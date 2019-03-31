@@ -80,6 +80,8 @@ GPIO.output(down_servo, False)
 # ************************************************************
 
 li=0
+
+es=0
 while True: 
     data = b''
 
@@ -104,7 +106,13 @@ while True:
              li=0
              GPIO.output(light, False)
     elif data == b'shut':
-        GPIO.output(shut, True)
+       
+        if li==0:
+             GPIO.output(shut, True)
+             li=1
+        else:
+             li=0
+             GPIO.output(shut, False)
 
     elif data == b'right':
     
