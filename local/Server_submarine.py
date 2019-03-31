@@ -157,6 +157,7 @@ while True:
 #         res = cv2.putText(res, str(i) ,(160,120),cv2.FONT_HERSHEY_SIMPLEX, 1,(255,0,0),2)
         im=cv2.imread('error.jpg')
         res = cv2.resize(im, (320, 240))
+        print('ERROR ENCODE')
         
 
 
@@ -168,18 +169,16 @@ while True:
             
             file_op = open(file, "rb")  
             file_read = file_op.read()
-            print(file_read)
             #time.sleep(0.1)
         except:
-            print("Error")
+            print("ERROR READ OR WRITE")
 
     try:
         conn.send(file_read)
         conn.send(b'stop')
-        print(1)
     except:
 
-        print(0)
+        print('ERROR SEND')
     
 # conn.close()
 # pi.stop()
