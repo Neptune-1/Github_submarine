@@ -30,7 +30,9 @@ OK_send = 0
 OK_foto = 0
 file = ""
 try:
+    print('cam 0')
     cap = cv2.VideoCapture(0) 
+    print('cam 01')
 except:
     print('NO CAMERA')
 beg = 0
