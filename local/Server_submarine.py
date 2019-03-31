@@ -47,8 +47,8 @@ while beg == 0:
         i = 1
         print('connect')
         beg=1
-    except:
-        pass
+    except Exception as e:
+        print('no connection', e)
 print('end connection')
 
 # sock.setblocking(0)
