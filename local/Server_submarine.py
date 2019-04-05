@@ -54,8 +54,8 @@ print('end connection')
 # sock.setblocking(0)
 # sock.settimeout(5)
 # ************************************************************
-shut=23
-light=22
+shut=22
+light=23
 right_servo = 4
 left_servo = 27
 up_servo = 17
