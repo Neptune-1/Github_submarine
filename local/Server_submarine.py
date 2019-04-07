@@ -56,10 +56,10 @@ print('end connection')
 # ************************************************************
 shut=22
 light=23
-right_servo = 4
+right_servo = 18
 left_servo = 27
 up_servo = 17
-down_servo = 18
+down_servo = 4
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
