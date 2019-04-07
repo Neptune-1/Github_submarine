@@ -56,8 +56,8 @@ print('end connection')
 # ************************************************************
 shut=22
 light=23
-right_servo = 18
-left_servo = 27
+right_servo = 27
+left_servo = 18
 up_servo = 17
 down_servo = 4
 
