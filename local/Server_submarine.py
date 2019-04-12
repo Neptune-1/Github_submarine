@@ -132,10 +132,10 @@ print('end connection')
 # ************************************************************
 shut=22
 light=23
-right_servo = 4
-left_servo = 27
+right_servo = 27
+left_servo = 18
 up_servo = 17
-down_servo = 18
+down_servo = 4
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -281,16 +281,18 @@ while True:
             
             file_op = open(file, "rb")  
             file_read = file_op.read()
-            #time.sleep(0.1)
+            
         except:
             print("ERROR READ OR WRITE")
 
     try:
+        time.sleep(0.1)
         conn.send(file_read)
         conn.send(b'stop')
-    except:
+    except Exception as e:
 
-        print('ERROR SEND')
+        #print('ERROR SEND')
+        print(e)
     
 # conn.close()
 # pi.stop()
