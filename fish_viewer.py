@@ -10,13 +10,12 @@ from keras.preprocessing.image import load_img,img_to_array
 from keras.applications.imagenet_utils import decode_predictions
 import matplotlib.pyplot as plt
 
-#json_file = open("reset_imagenet_model_v2.json", "r")
-#loaded_model_json = json_file.read()
-#json_file.close()
-#loaded_model = model_from_json(loaded_model_json)
-#loaded_model.load_weights("reset_imagenet_model_v2.h5")
+json_file = open("reset_imagenet_model_v2.json", "r")
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+loaded_model.load_weights("reset_imagenet_model_v2.h5")
 
-model = ResNet50(weights='imagenet')
 
 
 
