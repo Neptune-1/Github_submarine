@@ -188,9 +188,10 @@ while True:
     try:
         conn.send(file_read)
         conn.send(b'stop')
-    except:
+    except Exception as e:
 
-        print('ERROR SEND')
+        #print('ERROR SEND')
+        print(e)
     
 # conn.close()
 # pi.stop()
