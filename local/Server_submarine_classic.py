@@ -14,13 +14,6 @@ try:
 except:
     print('can not pigpio init')
 
-from keras.models import model_from_json
-from keras import optimizers
-import cv2
-import numpy as np
-import PIL
-import numpy as np
-
 
 motor = 24
 pi = pigpio.pi()
