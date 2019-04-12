@@ -154,7 +154,7 @@ GPIO.output(left_servo, False)
 GPIO.output(up_servo, False)
 GPIO.output(down_servo, False)
 # ************************************************************
-
+res_param=5
 li=0
 
 es=1
@@ -235,28 +235,28 @@ while True:
     file = "Number" + str(1) + ".jpg" 
     i += 1
     ret, im = cap.read()
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 4]
 
 
-
-    imk = PIL.Image.fromarray(im)
+    if i%5==0:
+        imk = PIL.Image.fromarray(im)
     
     
-    imk = im.resize((224,224) ,PIL.Image.ANTIALIAS)
-    imk = np.array(imk)
-    processed_image = preprocess_input(imk.reshape(-1,224,224,3))
-    predictions = loaded_model.predict(processed_image)
-    label = decode_predictions(predictions)
-    for name in fish_n:
-        if name in str(label):
-            fish=1
+        imk = im.resize((224,224) ,PIL.Image.ANTIALIAS)
+        imk = np.array(imk)
+        processed_image = preprocess_input(imk.reshape(-1,224,224,3))
+        predictions = loaded_model.predict(processed_image)
+        label = decode_predictions(predictions)
+        for name in fish_n:
+            if name in str(label):
+                fish=1
+                res_param=20
             
             
-    #print(str(label),fish,'puffer' in str(label) )
-    imgk = cv2.circle(imk,(112,112),50*fish,(0,0,0))
-    cv2.imshow('b',imgk)
-    cv2.waitKey(1)
-    fish=0
+        #print(str(label),fish,'puffer' in str(label) )
+        fish=0
+        res_param=5
+        
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), res_param]
 
     
     try:
