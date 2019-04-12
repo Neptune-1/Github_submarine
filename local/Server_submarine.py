@@ -181,11 +181,12 @@ while True:
             
             file_op = open(file, "rb")  
             file_read = file_op.read()
-            #time.sleep(0.1)
+            
         except:
             print("ERROR READ OR WRITE")
 
     try:
+        time.sleep(0.1)
         conn.send(file_read)
         conn.send(b'stop')
     except Exception as e:
